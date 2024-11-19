@@ -1,12 +1,12 @@
-- 👋 Hi, I’m @92683xv
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+local Players = game:GetService("Players")
+local MarketPlaceService = game:GetService("MarketplaceService")
+local GamepassID = 962361438
+local ToolName = "Bicycle"
 
-<!---
-92683xv/92683xv is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+Players.PlayerAdded:Connect(function(player)
+	player.CharacterAdded:Connect(function(character)
+		if MarketPlaceService:UserOwnsGamePassAsync(player.UserId, GamepassID) then
+			script[ToolName]:Clone().Parent = player.Backpack
+		end
+	end)
+end)
